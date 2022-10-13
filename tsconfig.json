@@ -16,6 +16,11 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "paths": {
+      "responsive-tree-node": [
+        "dist/responsive-tree-node"
+      ]
+    },
     "target": "es2020",
     "module": "es2020",
     "lib": [
