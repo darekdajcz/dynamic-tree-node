@@ -1,5 +1,5 @@
 {
-  "name": "responsive-tree-node",
+  "name": "@darekbiszkpt/dynamic-tree-node",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^14.0.0",
