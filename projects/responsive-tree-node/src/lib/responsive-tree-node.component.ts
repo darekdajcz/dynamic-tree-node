@@ -4,10 +4,12 @@ import { TreeNodeUI } from './node-recursion-template/model/tree-node-ui';
 @Component({
   selector: 'lib-responsive-tree-node',
   template: `
-    <lib-node-recursion-template [treeNode]="treeNode"
-                                 (expandEmitter)="nodeExpand($event)"></lib-node-recursion-template>
-  `,
-  styles: []
+    <lib-node-recursion-template [treeNode]="treeNode" (expand)="nodeExpand($event)">
+      <ng-template nodeTemplate let-treeNode>
+        <h2>{{treeNode.label}}</h2>
+      </ng-template>
+    </lib-node-recursion-template>
+  `
 })
 export class ResponsiveTreeNodeComponent implements OnInit {
   treeNode: TreeNodeUI = {

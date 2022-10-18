@@ -1,16 +1,21 @@
 <ng-template #tree let-treeNode="treeNode">
   <div class="tree-node">
     <div class="big-icon" [ngClass]="!treeNode.leaf ? 'big-icon-visible' : 'big-icon'">
-      <div *ngIf="!treeNode.leaf"  @fadeIn @fadeOut [ngClass]="{'expanded' : !treeNode.expanded}">
-        <img  [@rotatedState]="treeNode.expanded" (click)="expand(treeNode)" [src]="chevronDownUrl" alt=""/>
+      <div *ngIf="!treeNode.leaf" [ngClass]="{'expanded' : !treeNode.expanded}">
+        <img [@rotatedState]="treeNode.expanded" (click)="expandEmitter(treeNode)" [src]="chevronDownUrl" alt=""/>
       </div>
     </div>
-    <div class="tree-section ml-1" (click)="expand(treeNode)">
-      {{treeNode.label}}
+    <div class="tree-section ml-1" (click)="expandEmitter(treeNode)">
+      <div *ngIf="false;else template">
+        {{treeNode.label}}
+      </div>
+      <ng-template #template>
+        <ng-template *ngTemplateOutlet="nodeTemplate; context: {$implicit: treeNode }"></ng-template>
+      </ng-template>
     </div>
   </div>
 
-  <ul *ngIf="treeNode.expanded"  @fadeIn @fadeOut >
+  <ul *ngIf="treeNode.expanded" @fadeIn @fadeOut>
     <ng-container *ngFor="let child of treeNode.children">
       <li>
         <ng-container *ngTemplateOutlet="tree;context:{treeNode:child}"></ng-container>
@@ -21,3 +26,4 @@
 
 <ng-container *ngTemplateOutlet="tree;context:{treeNode:treeNode}">
 </ng-container>
+

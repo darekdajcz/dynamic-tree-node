@@ -1,7 +1,14 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, Output } from '@angular/core';
 import { TreeNodeUI } from './model/tree-node-ui';
 import { chevronDownUrl } from '../images-url/images-url.const';
 import { fadeIn, fadeOut, rotate } from '../animations/animations';
+
+import { Directive, TemplateRef } from '@angular/core';
+
+@Directive({ selector: '[nodeTemplate]' })
+export class NodeTemplateDirective {
+  constructor(public template: TemplateRef<any>) { }
+}
 
 @Component({
   selector: 'lib-node-recursion-template',
@@ -11,19 +18,15 @@ import { fadeIn, fadeOut, rotate } from '../animations/animations';
   ]
 })
 export class NodeRecursionTemplateComponent {
-
-  chevronDownUrl = chevronDownUrl
+  @ContentChild(NodeTemplateDirective, { read: TemplateRef }) nodeTemplate!: TemplateRef<any>;
   @Input() treeNode?: TreeNodeUI;
-  @Output() expandEmitter = new EventEmitter<TreeNodeUI>();
-  expanded = 'rotated';
+  @Output() expand = new EventEmitter<TreeNodeUI>();
+  chevronDownUrl = chevronDownUrl
 
-  expand(treeNode: TreeNodeUI): void {
+  expandEmitter(treeNode: TreeNodeUI): void {
     if (!treeNode.leaf) {
-      this.expandEmitter.emit(treeNode);
+      this.expand.emit(treeNode);
     }
   }
 
-  toggle(): void {
-    this.expanded = this.expanded === 'default' ? 'rotated' : 'default';
-  }
 }
