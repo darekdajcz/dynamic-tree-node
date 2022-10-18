@@ -1,0 +1,48 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+.tree-node{
+  display: flex;
+  padding: 5px;
+}
+
+.big-icon {
+  width: 24px;
+  height: 24px;
+  padding-top: 3px;
+
+  &-visible {
+    fa-icon {
+      width: 34px;
+      height: 34px;
+      font-size: 19px;
+      color: #3a474e !important;
+      padding: 5px 8px 0 8px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f1f1f1;
+        border-radius: 100%;
+      }
+    }
+  }
+}
+
+.db-param {
+  color: var(--cranberry);
+  border: 1px solid var(--cranberry);
+}
+
+.tree-section {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+img{
+  width: 20px;
+  height: 20px;
+}
