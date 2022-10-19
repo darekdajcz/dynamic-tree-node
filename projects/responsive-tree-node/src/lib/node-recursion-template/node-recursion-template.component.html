@@ -2,11 +2,11 @@
   <div class="tree-node">
     <div class="big-icon" [ngClass]="!treeNode.leaf ? 'big-icon-visible' : 'big-icon'">
       <div *ngIf="!treeNode.leaf" [ngClass]="{'expanded' : !treeNode.expanded}">
-        <img [@rotatedState]="treeNode.expanded" (click)="expandEmitter(treeNode)" [src]="chevronDownUrl" alt=""/>
+        <img [@rotatedState]="treeNode.expanded" (click)="expandEmitter(treeNode)" [src]="chevronDownBasicMediumUrl" alt=""/>
       </div>
     </div>
     <div class="tree-section ml-1" (click)="expandEmitter(treeNode)">
-      <div *ngIf="false;else template">
+      <div *ngIf="!nodeTemplate;else template">
         {{treeNode.label}}
       </div>
       <ng-template #template>
